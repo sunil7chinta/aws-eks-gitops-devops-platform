@@ -101,11 +101,12 @@ The following components were engineered and implemented as part of this project
 - Namespace separation
 - ReplicaSet lifecycle validation
 
-### GitHub Actions CI Pipeline
-- Automated Docker build and image tagging
-- Registry push (DockerHub)
-- Kubernetes manifest update
-- Git commit triggering GitOps deployment
+### GitHub Actions CI (Implemented in Primary Repository)
+The CI workflow is implemented and executed in the primary implementation repository:
+
+https://github.com/sunil7chinta/Devops-otel-project
+
+This repository documents the architecture and workflow design.
 
 ### GitOps (ArgoCD)
 - Declarative Application manifest
@@ -323,7 +324,6 @@ docs/troubleshooting.md
 ├── kubernetes/               # Deployment, Service, Ingress manifests
 ├── argocd/
 │   └── applications/         # ArgoCD GitOps application definitions
-├── .github/workflows/        # GitHub Actions CI pipeline
 ├── docs/
 │   ├── architecture.md       # High-level architecture explanation
 │   ├── deployment-flow.md    # End-to-end CI/CD breakdown
