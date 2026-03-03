@@ -63,7 +63,7 @@ Learning reference used during implementation:
 https://github.com/iam-veeramalla/ultimate-devops-project-demo
 
 The application source originates from that repository.  
-This project extends it with:
+This project builds a production-grade platform layer on top of the application source.
 
 - Terraform provisioning
 - AWS EKS setup
@@ -228,19 +228,21 @@ docs/troubleshooting.md
 ---
 
 ## 📂 Repository Structure
-.
-├── terraform/
-├── kubernetes/
-├── argocd/
-│ └── applications/
-├── .github/workflows/
-├── docs/
-│ ├── architecture.md
-│ ├── deployment-flow.md
-│ ├── troubleshooting.md
-│ └── screenshots/
-└── README.md
 
+```text
+.
+├── terraform/                # Infrastructure as Code (EKS, VPC, IAM, backend)
+├── kubernetes/               # Deployment, Service, Ingress manifests
+├── argocd/
+│   └── applications/         # ArgoCD GitOps application definitions
+├── .github/workflows/        # GitHub Actions CI pipeline
+├── docs/
+│   ├── architecture.md       # High-level architecture explanation
+│   ├── deployment-flow.md    # End-to-end CI/CD breakdown
+│   ├── troubleshooting.md    # Real-world issues & resolutions
+│   └── screenshots/          # Deployment proof (AWS, ArgoCD, CI)
+└── README.md
+```
 
 ---
 
