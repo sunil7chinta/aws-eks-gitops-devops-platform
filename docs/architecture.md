@@ -19,7 +19,7 @@ The infrastructure was fully deployed and validated on AWS. Due to cloud cost co
 
 The following diagram illustrates the complete CI/CD and GitOps workflow implemented in this project:
 
-![AWS EKS GitOps DevOps Platform Architecture](docs/screenshots/architecture-diagram.png)
+![AWS EKS GitOps DevOps Platform Architecture](screenshots/architecture-diagram.png)
 
 > End-to-end DevOps platform architecture integrating Terraform, GitHub Actions, ArgoCD, Amazon EKS, and AWS ALB.
 
