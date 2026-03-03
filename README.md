@@ -151,6 +151,12 @@ This repository documents the architecture and workflow design.
 
 ## 🏗️ Architecture Overview
 
+The following diagram illustrates the end-to-end DevOps workflow and cloud integration architecture implemented in this project:
+
+![AWS EKS GitOps DevOps Platform Architecture](docs/screenshots/architecture-diagram.png)
+
+> End-to-end DevOps platform architecture integrating Terraform, GitHub Actions, ArgoCD, Amazon EKS, and AWS ALB.
+
 High-Level Deployment Flow:
 
 Developer Push  

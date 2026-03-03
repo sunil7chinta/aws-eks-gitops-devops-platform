@@ -17,20 +17,30 @@ The infrastructure was fully deployed and validated on AWS. Due to cloud cost co
 
 ## High-Level Architecture
 
-GitHub (Source Code)
-        ↓
-GitHub Actions (CI Pipeline)
-        ↓
-Docker Image pushed to DockerHub
-        ↓
-Kubernetes Manifests Updated (Image Tag)
-        ↓
-ArgoCD (GitOps Controller)
-        ↓
-Amazon EKS Cluster
-        ↓
-AWS Application Load Balancer
-        ↓
+The following diagram illustrates the complete CI/CD and GitOps workflow implemented in this project:
+
+![AWS EKS GitOps DevOps Platform Architecture](docs/screenshots/architecture-diagram.png)
+
+> End-to-end DevOps platform architecture integrating Terraform, GitHub Actions, ArgoCD, Amazon EKS, and AWS ALB.
+
+---
+
+### Deployment Flow (Step-by-Step)
+
+GitHub (Source Code)  
+ ↓  
+GitHub Actions (CI Pipeline)  
+ ↓  
+Docker Image pushed to DockerHub  
+ ↓  
+Kubernetes Manifests Updated (Image Tag)  
+ ↓  
+ArgoCD (GitOps Controller)  
+ ↓  
+Amazon EKS Cluster  
+ ↓  
+AWS Application Load Balancer  
+ ↓  
 Public Access via DNS
 
 ---
@@ -47,6 +57,7 @@ Provisioned using Terraform with remote backend configuration:
 - IAM roles and policies
 
 Remote backend ensures:
+
 - State consistency
 - Concurrency protection
 - Production-grade infrastructure management
@@ -71,11 +82,13 @@ ArgoCD runs in the `argocd` namespace.
 ArgoCD was installed using official manifests.
 
 Features enabled:
+
 - Auto Sync
 - Prune
 - Self Heal
 
 When a new image tag is committed:
+
 - ArgoCD detects Git change
 - Syncs automatically
 - Triggers rolling deployment
@@ -93,6 +106,7 @@ AWS Load Balancer Controller configured using:
 - Annotated Ingress resources
 
 Result:
+
 - ALB dynamically provisioned
 - Target groups auto-managed
 - Internet-facing access enabled
