@@ -6,6 +6,27 @@ This repository serves as the documented platform engineering layer built around
 
 ---
 
+## ⚠️ Important Clarification
+
+This repository does **not** contain the original microservices application code.
+
+The base application originates from the OpenTelemetry Demo project (via a referenced learning repository).
+
+This repository represents the **DevOps platform engineering layer** built on top of that application, including:
+
+- Infrastructure provisioning (Terraform)
+- AWS EKS cluster setup
+- GitHub Actions CI pipeline
+- ArgoCD GitOps implementation
+- AWS ALB + IRSA integration
+- Deployment automation and troubleshooting documentation
+
+The working implementation repository where the deployment was executed is:
+
+👉 https://github.com/sunil7chinta/Devops-otel-project
+
+---
+
 ## 📌 Project Purpose
 
 This project demonstrates a real-world DevOps workflow including:
