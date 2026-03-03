@@ -1,98 +1,150 @@
 # AWS EKS GitOps DevOps Platform
 
-Production-grade CI/CD and GitOps implementation on AWS EKS using Terraform, GitHub Actions, ArgoCD, and AWS ALB.
+Production-grade CI/CD and GitOps implementation on AWS EKS using Terraform, GitHub Actions, ArgoCD, and AWS Application Load Balancer (ALB).
 
-This repository serves as the documented platform engineering layer built around a cloud-native microservices application.
+This repository documents the **DevOps and platform engineering layer** built around a cloud-native microservices application.
 
 ---
 
-## ⚠️ Important Clarification
+## 📊 Project Status
 
-This repository does **not** contain the original microservices application code.
+- Fully implemented and validated on AWS EKS
+- CI/CD workflow executed successfully
+- ArgoCD auto-sync verified
+- Infrastructure currently not running due to cloud cost considerations
+
+---
+
+## 📌 Project Scope & Clarification
+
+This repository does **not** contain the original microservices business logic.
 
 The base application originates from the OpenTelemetry Demo project (via a referenced learning repository).
 
-This repository represents the **DevOps platform engineering layer** built on top of that application, including:
-
-- Infrastructure provisioning (Terraform)
-- AWS EKS cluster setup
-- GitHub Actions CI pipeline
-- ArgoCD GitOps implementation
-- AWS ALB + IRSA integration
-- Deployment automation and troubleshooting documentation
-
-The working implementation repository where the deployment was executed is:
-
-👉 https://github.com/sunil7chinta/Devops-otel-project
-
----
-
-## 📌 Project Purpose
-
-This project demonstrates a real-world DevOps workflow including:
-
-- Infrastructure provisioning using Terraform
-- Remote state management with S3 and DynamoDB
-- Kubernetes cluster deployment on AWS EKS
-- GitOps-based continuous deployment using ArgoCD
-- CI automation using GitHub Actions
-- AWS ALB integration using IRSA (IAM Roles for Service Accounts)
-
-This repository focuses on architecture, automation, and deployment engineering.
+What this repository represents is the **complete cloud infrastructure, CI/CD automation, and GitOps deployment architecture** engineered and implemented by me on top of that application.
 
 ---
 
 ## 🔗 Repository Relationships
 
-### 🔹 Original Working Implementation (Primary Development Repo)
+### 🔹 Primary Implementation Repository (Execution & Deployment)
 
-All actual deployments, CI pipelines, and cluster configuration were executed and validated in:
+All AWS deployments, CI execution, ArgoCD sync validation, and infrastructure testing were performed in:
 
 👉 https://github.com/sunil7chinta/Devops-otel-project
 
 This includes:
-- GitHub Actions workflow
-- Kubernetes manifests
-- Image updates
-- ArgoCD sync validation
-- Live AWS deployment
+- Terraform execution
+- GitHub Actions pipeline runs
+- Kubernetes deployment validation
+- ArgoCD live sync
+- AWS ALB provisioning
+- Production-style debugging
 
 ---
 
-### 🔹 This Repository (Showcase & Documentation)
+### 🔹 This Repository (Platform Engineering Showcase)
 
 👉 https://github.com/sunil7chinta/aws-eks-gitops-devops-platform
 
 This repository provides:
 
-- Clean architectural structure
-- Production-grade documentation
-- GitOps application manifests
-- Infrastructure explanation
+- Structured infrastructure code
+- Declarative GitOps manifests
+- Architecture documentation
 - Deployment flow breakdown
-- Troubleshooting documentation
-- Screenshots as deployment proof
+- Troubleshooting logs
+- Deployment proof screenshots
+- Clean portfolio presentation
 
-This is designed as a portfolio-grade case study.
+It is designed as a **platform engineering case study**, not an application repository.
 
 ---
 
-### 🔹 Reference Repository
+### 🔹 Application Base Reference
 
-Learning reference used during implementation:
+Application source referenced during implementation:
 
 https://github.com/iam-veeramalla/ultimate-devops-project-demo
 
-The application source originates from that repository.  
-This project builds a production-grade platform layer on top of the application source.
+This project implements a production-style DevOps platform architecture on top of that application.
 
-- Terraform provisioning
-- AWS EKS setup
-- GitHub Actions CI
-- ArgoCD GitOps CD
-- ALB Controller integration
-- IRSA configuration
-- Production-style documentation
+---
+
+## 🎯 Scope of Engineering Contribution
+
+### ❌ What Was Not Built Here
+
+- Microservices business logic
+- Internal service implementation
+- Application feature development
+
+---
+
+### ✅ What Was Engineered in This Project
+
+The following components were engineered and implemented as part of this project:
+
+### Infrastructure (Terraform)
+- VPC with public and private subnets
+- Amazon EKS cluster
+- Managed node groups
+- IAM roles and policies
+- OIDC provider setup
+- S3 backend for Terraform state
+- DynamoDB state locking
+
+### Kubernetes & Networking
+- Deployment and Service manifests
+- ALB-based Ingress configuration
+- Rolling deployment strategy
+- Namespace separation
+- ReplicaSet lifecycle validation
+
+### GitHub Actions CI Pipeline
+- Automated Docker build and image tagging
+- Registry push (DockerHub)
+- Kubernetes manifest update
+- Git commit triggering GitOps deployment
+
+### GitOps (ArgoCD)
+- Declarative Application manifest
+- Auto-sync enabled
+- Self-healing enabled
+- Prune enabled
+- Rolling updates triggered via Git commit
+
+### AWS Integration
+- AWS Load Balancer Controller
+- IRSA (IAM Role for Service Account)
+- Target group automation
+- Internet-facing ALB routing
+
+### Real-World Debugging
+- Terraform state locking issues
+- VPC dependency deletion errors
+- EBS disk expansion
+- IAM & OIDC misconfiguration
+- ALB controller conflicts
+- DNS propagation troubleshooting
+- ServiceAccount recreation errors
+
+---
+
+## 🔍 Responsibility Breakdown
+
+| Component | Application Repo | This Platform Repo |
+|------------|-----------------|-------------------|
+| Microservices Code | ✔ | ✖ |
+| Business Logic | ✔ | ✖ |
+| Dockerization | Partial | ✔ |
+| Terraform Infrastructure | ✖ | ✔ |
+| AWS EKS Provisioning | ✖ | ✔ |
+| GitHub Actions CI (productcatalog-service) | ✔ | ✖ |
+| ArgoCD GitOps | ✖ | ✔ |
+| ALB + IRSA Setup | ✖ | ✔ |
+| Deployment Automation | ✖ | ✔ |
+| Troubleshooting Documentation | ✖ | ✔ |
 
 ---
 
@@ -101,15 +153,15 @@ This project builds a production-grade platform layer on top of the application 
 High-Level Deployment Flow:
 
 Developer Push  
-→ GitHub Actions (Build + Push Image)  
-→ Manifest Image Tag Update  
-→ Commit to Git  
+→ GitHub Actions (Build & Push Image)  
+→ GitHub Actions updates Kubernetes manifest (image tag)  
+→ Updated manifest committed to repository   
 → ArgoCD Detects Change  
 → Auto Sync  
 → Rolling Deployment on EKS  
 → AWS ALB Routes Traffic  
 
-Detailed breakdown available in:
+Detailed architecture breakdown available in:
 
 docs/architecture.md
 
@@ -117,34 +169,33 @@ docs/architecture.md
 
 ## 🧱 Infrastructure (Terraform)
 
-Provisioned resources:
+Provisioned Resources:
 
-- VPC with public & private subnets
+- VPC with public/private subnets
 - Amazon EKS cluster
-- Managed Node Groups
+- Managed node groups
 - IAM roles and policies
 - OIDC provider
-- S3 backend for Terraform state
+- S3 backend for state storage
 - DynamoDB for state locking
 
 ### Remote Backend Configuration
 
-Terraform backend configured with:
+Terraform configured with:
 
-- S3 for centralized state
-- DynamoDB for locking
+- S3 (remote state storage)
+- DynamoDB (state locking)
 
 Ensures:
-
-- State consistency
-- Concurrency protection
-- Production-level IaC workflow
+- Concurrency-safe infrastructure changes
+- Centralized state management
+- Production-style IaC workflow
 
 ---
 
 ## ☸️ Kubernetes Layer
 
-Deployed components:
+Deployed Components:
 
 - Deployments
 - Services
@@ -152,42 +203,44 @@ Deployed components:
 - ReplicaSets
 - Rolling update strategy
 
-Namespaces used:
+Namespaces:
 
 - `default` → application workloads
 - `argocd` → GitOps controller
 
 ---
 
-## 🔁 CI/CD Pipeline
+## 🔄 CI/CD Design Approach
 
-### Continuous Integration (GitHub Actions)
+The CI workflow is triggered on push to the `main` branch.
 
-Triggered on push to `main`:
+The CI pipeline is currently implemented for the **productcatalog-service** as a reference microservice.
 
-1. Build Docker image
-2. Tag image with commit SHA
-3. Push image to DockerHub
-4. Update Kubernetes manifest image tag
-5. Commit updated manifest
+Pipeline stages include:
 
-No manual image updates required.
+1. Docker image build
+2. Image tagging using commit SHA
+3. Push to DockerHub
+4. GitHub Actions updates Kubernetes manifest (image tag)
+5. Commit pushed to repository
+
+This design can be extended to additional microservices using reusable workflow patterns.
 
 ---
 
 ### Continuous Deployment (GitOps via ArgoCD)
 
-ArgoCD monitors the Git repository.
+ArgoCD monitors the repository.
 
-When image tag changes:
+On manifest update:
 
 - Application marked OutOfSync
-- Auto-sync triggered
-- Kubernetes rolling update executed
-- Old pod terminated
-- New pod becomes healthy
+- Auto-sync applies changes
+- Kubernetes performs rolling update
+- Old pod terminates
+- New pod becomes active
 
-No manual kubectl apply after bootstrap.
+No manual kubectl apply required after bootstrap.
 
 ---
 
@@ -196,26 +249,26 @@ No manual kubectl apply after bootstrap.
 Configured using:
 
 - AWS Load Balancer Controller
-- IAM Role for Service Account (IRSA)
+- IRSA (IAM Role for Service Account)
 - OIDC provider
 - Ingress annotations
 
 Result:
 
 - Dynamic ALB provisioning
-- Target groups auto-managed
-- Internet-facing access
-- Rolling traffic shift during deployment
+- Automatic target group registration
+- Internet-facing routing
+- Zero-downtime deployment behavior
 
 ---
 
 ## 📸 Deployment Validation
 
-This platform was fully deployed and validated on AWS.
+The platform was fully deployed and validated on AWS.
 
 Due to cloud cost considerations, infrastructure is not continuously running.
 
-Proof available under:
+Deployment proof available in:
 
 docs/screenshots/
 
@@ -223,11 +276,11 @@ Includes:
 
 - Terraform provisioning logs
 - EKS cluster creation
-- ALB creation
+- ALB provisioning
 - ArgoCD sync dashboard
 - ReplicaSet revisions
-- Rolling deployment evidence
-- CI success logs
+- Rolling update validation
+- CI pipeline execution logs
 
 ---
 
@@ -245,6 +298,20 @@ Includes:
 Full breakdown available in:
 
 docs/troubleshooting.md
+
+---
+
+## 🛠️ Key Engineering Concepts Demonstrated
+
+- Infrastructure as Code
+- Remote Terraform state management
+- GitOps workflow implementation
+- CI/CD automation
+- IAM & IRSA integration
+- Kubernetes networking
+- Rolling deployments
+- Cloud debugging & troubleshooting
+- Production-style deployment architecture
 
 ---
 
@@ -267,19 +334,28 @@ docs/troubleshooting.md
 
 ---
 
-## 🎯 Skills Demonstrated
+## 📈 Project Metrics
 
-- Infrastructure as Code (Terraform)
-- GitOps implementation
-- AWS EKS provisioning
-- ALB + IRSA integration
-- CI/CD automation
-- Container lifecycle management
-- Kubernetes deployment strategies
-- Cloud troubleshooting
-- Distributed system debugging
+- 30+ AWS resources provisioned via Terraform
+- 3 containerized microservices deployed
+- 1 end-to-end automated CI pipeline implemented
+- GitOps auto-sync enabled with zero-downtime rolling updates
+- Remote state locking configured using DynamoDB
 
 ---
+
+## 🚀 Future Enhancements
+
+Planned improvements:
+
+- Prometheus and Grafana monitoring integration
+- Horizontal Pod Autoscaler (HPA)
+- Cluster Autoscaler
+- HTTPS with AWS ACM
+- Image vulnerability scanning (Trivy)
+- Multi-environment (dev/staging/prod) deployment strategy
+
+--- 
 
 ## 🧠 What Makes This Project Valuable
 
