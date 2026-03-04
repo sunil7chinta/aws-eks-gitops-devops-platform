@@ -291,6 +291,20 @@ Includes:
 
 ---
 
+## ⚙️ Key Engineering Decisions
+
+### GitOps Instead of Manual Deployment
+ArgoCD was used to implement a GitOps workflow where Git serves as the single source of truth for application state.
+
+### Remote Terraform Backend
+Terraform state was stored in S3 with DynamoDB locking to enable safe infrastructure updates and prevent state corruption.
+
+### IRSA Instead of Static AWS Credentials
+IAM Roles for Service Accounts were used to allow Kubernetes workloads to securely interact with AWS services without embedding credentials.
+
+### ALB Ingress Instead of NodePort Exposure
+AWS Load Balancer Controller dynamically provisions ALB resources, enabling scalable and production-style ingress management.
+
 ## 🛠️ Key Engineering Challenges Solved
 
 - Terraform state locking configuration
